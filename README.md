@@ -1,6 +1,6 @@
 # xOcean - XRPL DeFi Lending Protocol
 
-![xOcean Logo](https://via.placeholder.com/200x80/0066CC/FFFFFF?text=xOcean)
+![xOcean Logo](./assets/img/xocean-logo.jpg)
 
 > A decentralized finance (DeFi) lending protocol built on the XRP Ledger (XRPL) that enables users to lend and borrow digital assets in a trustless, automated manner.
 
@@ -291,6 +291,5 @@ A: xOcean charges minimal protocol fees (typically 0.1-0.5%) plus standard XRPL 
   <br>
   <a href="https://xocean.finance">Website</a> •
   <a href="https://twitter.com/xOceanFinance">Twitter</a> •
-  <a href="https://discord.gg/xocean">Discord</a> •
-  <a href="https://github.com/your-org/xOcean">GitHub</a>
+  <a href="https://github.com/xOcean-Finance/xrpl-lending">GitHub</a>
 </div>

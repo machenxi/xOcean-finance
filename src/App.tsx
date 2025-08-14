@@ -1,6 +1,7 @@
 // src/App.tsx
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { WalletProvider } from '@/context/WalletProvider';
+import { Toaster } from '@/components/ui/toaster';
 import ConnectWalletButton from '@/components/ConnectWalletButton';
 import NetworkBadge from '@/components/NetworkBadge';
 import Home from '@/pages/Home';
@@ -159,6 +160,9 @@ function App() {
           </main>
           
           <Footer />
+          
+          {/* Toast Notifications */}
+          <Toaster />
         </div>
       </Router>
     </WalletProvider>

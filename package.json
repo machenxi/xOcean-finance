@@ -9,7 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "dev:server": "cd server && npm run dev",
-    "build:server": "cd server && npm run build"
+    "build:server": "cd server && npm run build",
+    "deploy:rlusd": "ts-node src/scripts/deployRLUSD.ts",
+    "deploy:rlusd:interactive": "ts-node src/scripts/deployRLUSD.ts --interactive"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
@@ -33,6 +35,7 @@
     "xrpl": "^2.14.0"
   },
   "devDependencies": {
+    "@types/node": "^20.10.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -44,6 +47,7 @@
     "eslint-plugin-react-refresh": "^0.4.4",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   }
