@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xOcean - XRPL Lending Protocol</title>
+    <script>
+      // Polyfill Buffer and WebSocket for browser environment
+      window.global = window.global || window;
+      window.Buffer = window.Buffer || {};
+      
+      // Ensure WebSocket is available
+      if (typeof window.WebSocket === 'undefined') {
+        window.WebSocket = class MockWebSocket {
+          constructor(url, protocols) {
+            this.url = url;
+            this.protocols = protocols;
+            this.readyState = 0;
+            console.warn('WebSocket not available, using mock');
+          }
+          
+          send() { console.warn('Mock WebSocket send called'); }
+          close() { console.warn('Mock WebSocket close called'); }
+        };
+        
+        window.WebSocket.CONNECTING = 0;
+        window.WebSocket.OPEN = 1;
+        window.WebSocket.CLOSING = 2;
+        window.WebSocket.CLOSED = 3;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
