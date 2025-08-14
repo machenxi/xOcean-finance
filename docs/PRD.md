@@ -489,6 +489,173 @@ export function useTrustline() {
 
 ---
 
+## User Profile Page Requirements
+
+### Overview
+A comprehensive user profile page that provides detailed insights into a user's lending and borrowing activities, portfolio performance, transaction history, and account management features.
+
+### Core Features
+
+#### 1. Profile Header
+- **Wallet Information:** Display connected wallet address (truncated with copy functionality), network badge, connection status
+- **Account Summary:** Join date, total transactions, account health score, verification status
+- **Quick Actions:** Disconnect wallet, switch network, export data, settings access
+
+#### 2. Portfolio Overview Dashboard
+- **Total Portfolio Value:** Real-time USD value of all positions and assets
+- **Performance Metrics:** Total earned, total paid in interest, net profit/loss, ROI percentage
+- **Asset Breakdown:** Pie chart showing distribution of assets (XRP, RLUSD, collateral)
+- **Health Indicators:** Overall portfolio health, liquidation risk assessment, diversification score
+
+#### 3. Position Management
+- **Active Positions:** Detailed cards for all active lending/borrowing positions
+  - Position details: Amount, asset, interest rate, duration, status
+  - Performance metrics: Current value, earned/paid interest, days remaining
+  - Quick actions: Extend, withdraw, add collateral, repay
+- **Position History:** Paginated list of completed/liquidated positions
+- **Position Analytics:** Charts showing position performance over time
+
+#### 4. Transaction History
+- **Comprehensive Log:** All transactions (deposits, withdrawals, borrows, repayments, liquidations)
+- **Transaction Details:** Hash, timestamp, amount, fees, status, explorer links
+- **Filtering & Search:** By date range, transaction type, asset, status
+- **Export Functionality:** CSV/PDF export for tax reporting
+
+#### 5. Risk Management
+- **Collateral Tracking:** Real-time collateral ratios, liquidation thresholds
+- **Risk Alerts:** Notifications for approaching liquidation, rate changes
+- **Health Score:** Dynamic calculation based on diversification, LTV ratios, market conditions
+- **Liquidation History:** Details of any past liquidations with explanations
+
+#### 6. Earnings & Analytics
+- **Interest Earnings:** Detailed breakdown of earnings by asset and time period
+- **Interest Payments:** Borrowing costs analysis and optimization suggestions
+- **Performance Charts:** Historical performance, APY trends, comparative analysis
+- **Tax Reporting:** Annual summaries, realized gains/losses, interest income
+
+#### 7. Account Settings
+- **Notification Preferences:** Email/push notifications for various events
+- **Display Settings:** Currency preferences, timezone, language
+- **Privacy Controls:** Data sharing preferences, analytics opt-out
+- **Security Settings:** Two-factor authentication, session management
+
+#### 8. Advanced Features
+- **Portfolio Optimization:** AI-powered suggestions for better returns
+- **Market Insights:** Personalized market analysis based on user's positions
+- **Social Features:** Leaderboards, achievement badges, referral program
+- **API Access:** Personal API keys for third-party integrations
+
+### Technical Implementation
+
+#### File Structure
+```
+/src/components/profile/
+├── UserProfile.tsx              # Main profile page component
+├── ProfileHeader.tsx            # Wallet info and quick actions
+├── PortfolioOverview.tsx        # Portfolio dashboard
+├── PositionManager.tsx          # Active positions management
+├── TransactionHistory.tsx       # Transaction log with filtering
+├── RiskDashboard.tsx           # Risk management interface
+├── EarningsAnalytics.tsx       # Earnings and performance charts
+├── AccountSettings.tsx         # User preferences and settings
+└── components/
+    ├── PositionCard.tsx         # Enhanced position display
+    ├── TransactionRow.tsx       # Transaction list item
+    ├── PerformanceChart.tsx     # Reusable chart component
+    ├── RiskIndicator.tsx        # Risk visualization
+    └── ExportDialog.tsx         # Data export functionality
+```
+
+#### Data Models
+```typescript
+interface UserProfile {
+  address: string;
+  network: string;
+  joinDate: Date;
+  totalTransactions: number;
+  accountHealthScore: number;
+  verificationStatus: 'verified' | 'pending' | 'unverified';
+  preferences: UserPreferences;
+}
+
+interface PortfolioMetrics {
+  totalValue: string;
+  totalEarned: string;
+  totalPaid: string;
+  netProfit: string;
+  roi: number;
+  healthScore: number;
+  liquidationRisk: 'low' | 'medium' | 'high';
+  assetDistribution: AssetAllocation[];
+}
+
+interface EnhancedPosition extends LendingPosition {
+  currentValue: string;
+  unrealizedPnL: string;
+  healthRatio?: number;
+  liquidationPrice?: string;
+  daysRemaining: number;
+  performanceHistory: PerformancePoint[];
+}
+
+interface TransactionRecord {
+  id: string;
+  hash: string;
+  type: 'deposit' | 'withdraw' | 'borrow' | 'repay' | 'liquidation';
+  asset: string;
+  amount: string;
+  fee: string;
+  timestamp: Date;
+  status: 'confirmed' | 'pending' | 'failed';
+  blockNumber?: number;
+}
+```
+
+#### API Endpoints
+```
+GET /api/profile/:address          # Get user profile data
+GET /api/portfolio/:address        # Get portfolio metrics
+GET /api/positions/:address        # Get detailed positions
+GET /api/transactions/:address     # Get transaction history
+GET /api/analytics/:address        # Get performance analytics
+POST /api/profile/settings         # Update user preferences
+POST /api/profile/export           # Generate data export
+```
+
+### UX/UI Requirements
+
+#### Design Principles
+- **Information Hierarchy:** Clear visual hierarchy with most important data prominently displayed
+- **Progressive Disclosure:** Advanced features accessible but not overwhelming
+- **Responsive Design:** Optimized for desktop, tablet, and mobile viewing
+- **Accessibility:** WCAG 2.1 AA compliance, keyboard navigation, screen reader support
+
+#### Visual Design
+- **Color Coding:** Consistent color scheme for different position types and risk levels
+- **Data Visualization:** Interactive charts and graphs for complex data
+- **Loading States:** Skeleton screens and progressive loading for better perceived performance
+- **Error Handling:** Graceful error states with actionable recovery options
+
+#### Navigation
+- **Breadcrumb Navigation:** Clear path indication within profile sections
+- **Quick Navigation:** Sidebar or tab-based navigation between profile sections
+- **Search Functionality:** Global search within user's data
+- **Bookmarking:** Deep linking to specific profile sections
+
+### Security & Privacy
+
+#### Data Protection
+- **Client-Side Encryption:** Sensitive data encrypted before storage
+- **Minimal Data Collection:** Only collect necessary data for functionality
+- **Data Retention:** Clear policies on data retention and deletion
+- **GDPR Compliance:** Right to data portability and deletion
+
+#### Access Control
+- **Wallet-Based Authentication:** Profile access tied to wallet ownership
+- **Session Management:** Secure session handling with timeout
+- **Audit Logging:** Track access to sensitive profile data
+- **Privacy Controls:** User control over data sharing and analytics
+
 ## Acceptance criteria
 
 - **Wallet connectivity:** User can connect via Crossmark or Gem Wallet; address and network are detected and displayed.
@@ -497,7 +664,8 @@ export function useTrustline() {
 - **Borrower collateral:** EscrowCreate is signed from the borrower; backend acknowledges escrow and disburses RLUSD from reserve on Testnet.
 - **Resilience:** If a wallet is not installed, UI clearly indicates and offers install guidance; switching wallets works without reload.
 - **Security guardrails:** Destination addresses for pool/reserve are fixed in config; client never signs arbitrary destinations.
+- **User Profile:** Comprehensive profile page displays all user positions, transaction history, portfolio analytics, and account management features with real-time updates.
 
 ---
 
-If you want me to also include pre‑wired install links, explorer URLs per network, and a minimal Xaman deep‑link flow, say the word and I’ll append those modules.
+If you want me to also include pre‑wired install links, explorer URLs per network, and a minimal Xaman deep‑link flow, say the word and I'll append those modules.

@@ -14,8 +14,10 @@
     "deploy:rlusd:interactive": "ts-node src/scripts/deployRLUSD.ts --interactive"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-toast": "^1.1.5",
     "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.0",

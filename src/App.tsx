@@ -5,8 +5,8 @@ import { Toaster } from '@/components/ui/toaster';
 import ConnectWalletButton from '@/components/ConnectWalletButton';
 import NetworkBadge from '@/components/NetworkBadge';
 import Home from '@/pages/Home';
-import Lend from '@/pages/Lend';
-import Borrow from '@/pages/Borrow';
+import LendBorrow from '@/pages/LendBorrow';
+import ProfilePage from '@/pages/ProfilePage';
 import './App.css';
 
 function Navigation() {
@@ -39,20 +39,20 @@ function Navigation() {
                 Dashboard
               </Link>
               <Link 
-                to="/lend" 
+                to="/lending" 
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive('/lend') ? 'text-foreground' : 'text-muted-foreground'
+                  isActive('/lending') ? 'text-foreground' : 'text-muted-foreground'
                 }`}
               >
-                Lend
+                Lending & Borrowing
               </Link>
               <Link 
-                to="/borrow" 
+                to="/profile" 
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive('/borrow') ? 'text-foreground' : 'text-muted-foreground'
+                  isActive('/profile') ? 'text-foreground' : 'text-muted-foreground'
                 }`}
               >
-                Borrow
+                Profile
               </Link>
             </div>
           </div>
@@ -76,20 +76,20 @@ function Navigation() {
               Dashboard
             </Link>
             <Link 
-              to="/lend" 
+              to="/lending" 
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/lend') ? 'text-foreground' : 'text-muted-foreground'
+                isActive('/lending') ? 'text-foreground' : 'text-muted-foreground'
               }`}
             >
-              Lend
+              Lending & Borrowing
             </Link>
             <Link 
-              to="/borrow" 
+              to="/profile" 
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/borrow') ? 'text-foreground' : 'text-muted-foreground'
+                isActive('/profile') ? 'text-foreground' : 'text-muted-foreground'
               }`}
             >
-              Borrow
+              Profile
             </Link>
           </div>
         </div>
@@ -154,8 +154,8 @@ function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/lend" element={<Lend />} />
-              <Route path="/borrow" element={<Borrow />} />
+              <Route path="/lending" element={<LendBorrow />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </main>
           
