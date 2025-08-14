@@ -157,7 +157,7 @@ export function TransactionConfirmation({
               {transaction.interestRate && (
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Interest Rate:</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-600 dark:text-green-400">
                     {transaction.interestRate}% APY
                   </span>
                 </div>
@@ -182,7 +182,7 @@ export function TransactionConfirmation({
               {transaction.estimatedReturn && (
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Expected Return:</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-600 dark:text-green-400">
                     {transaction.estimatedReturn} {transaction.asset}
                   </span>
                 </div>
@@ -241,7 +241,7 @@ export function TransactionConfirmation({
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-muted-foreground">Current Balance:</span>
                   <span className={cn(
-                    hasInsufficientBalance() ? 'text-red-600' : 'text-green-600'
+                    hasInsufficientBalance() ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'
                   )}>
                     {balance} XRP
                   </span>
@@ -252,9 +252,9 @@ export function TransactionConfirmation({
 
           {/* Risks and Warnings */}
           {(transaction.risks?.length || hasInsufficientBalance() || isExpired()) && (
-            <Card className="border-yellow-200 bg-yellow-50">
+            <Card className="border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-900/20">
               <CardContent className="p-4">
-                <div className="text-sm font-medium text-yellow-800 mb-2">⚠️ Important Notices</div>
+                <div className="text-sm font-medium text-yellow-800 dark:text-yellow-200 mb-2">⚠️ Important Notices</div>
                 
                 {hasInsufficientBalance() && (
                   <div className="text-sm text-red-600 mb-2">

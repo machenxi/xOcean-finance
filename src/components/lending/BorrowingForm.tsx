@@ -243,11 +243,11 @@ export function BorrowingForm({ onSubmit, className }: BorrowingFormProps) {
   };
 
   const riskLevel = getRiskLevel();
-  const riskColors = {
-    low: 'text-green-600 bg-green-50 border-green-200',
-    medium: 'text-yellow-600 bg-yellow-50 border-yellow-200',
-    high: 'text-red-600 bg-red-50 border-red-200',
-  };
+  const riskLevelStyles = {
+      low: 'text-green-600 bg-green-50 border-green-200 dark:text-green-400 dark:bg-green-900/20 dark:border-green-800',
+      medium: 'text-yellow-600 bg-yellow-50 border-yellow-200 dark:text-yellow-400 dark:bg-yellow-900/20 dark:border-yellow-800',
+      high: 'text-red-600 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-900/20 dark:border-red-800',
+    };
 
   return (
     <>
@@ -276,10 +276,10 @@ export function BorrowingForm({ onSubmit, className }: BorrowingFormProps) {
                 showBalance={false}
               />
               {errors.borrowAsset && (
-                <p className="text-sm text-red-600">{errors.borrowAsset}</p>
+                <p className="text-sm text-red-600 dark:text-red-400">{errors.borrowAsset}</p>
               )}
               {errors.borrowAmount && (
-                <p className="text-sm text-red-600">{errors.borrowAmount}</p>
+                <p className="text-sm text-red-600 dark:text-red-400">{errors.borrowAmount}</p>
               )}
             </div>
 
@@ -296,10 +296,10 @@ export function BorrowingForm({ onSubmit, className }: BorrowingFormProps) {
                 showBalance={true}
               />
               {errors.collateralAsset && (
-                <p className="text-sm text-red-600">{errors.collateralAsset}</p>
+                <p className="text-sm text-red-600 dark:text-red-400">{errors.collateralAsset}</p>
               )}
               {errors.collateralAmount && (
-                <p className="text-sm text-red-600">{errors.collateralAmount}</p>
+                <p className="text-sm text-red-600 dark:text-red-400">{errors.collateralAmount}</p>
               )}
             </div>
 
@@ -364,8 +364,8 @@ export function BorrowingForm({ onSubmit, className }: BorrowingFormProps) {
                         <span className="text-muted-foreground">Current LTV:</span>
                         <div className={cn(
                           'font-semibold',
-                          riskLevel === 'high' ? 'text-red-600' :
-                          riskLevel === 'medium' ? 'text-yellow-600' : 'text-green-600'
+                          riskLevel === 'high' ? 'text-red-600 dark:text-red-400' :
+                riskLevel === 'medium' ? 'text-yellow-600 dark:text-yellow-400' : 'text-green-600 dark:text-green-400'
                         )}>
                           {(collateralInfo.ltv * 100).toFixed(1)}%
                         </div>

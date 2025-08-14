@@ -52,17 +52,17 @@ export function InterestRateDisplay({
   className,
 }: InterestRateDisplayProps) {
   const getUtilizationColor = (utilization: number) => {
-    if (utilization >= 90) return 'text-red-600';
-    if (utilization >= 80) return 'text-orange-600';
-    if (utilization >= 70) return 'text-yellow-600';
-    return 'text-green-600';
+    if (utilization >= 90) return 'text-red-600 dark:text-red-400';
+    // High utilization - yellow/orange
+    if (utilization >= 70) return 'text-yellow-600 dark:text-yellow-400';
+    return 'text-green-600 dark:text-green-400';
   };
 
   const getUtilizationBgColor = (utilization: number) => {
-    if (utilization >= 90) return 'bg-red-100';
-    if (utilization >= 80) return 'bg-orange-100';
-    if (utilization >= 70) return 'bg-yellow-100';
-    return 'bg-green-100';
+    if (utilization >= 90) return 'bg-red-100 dark:bg-red-900/20';
+    // High utilization - yellow/orange
+    if (utilization >= 70) return 'bg-yellow-100 dark:bg-yellow-900/20';
+    return 'bg-green-100 dark:bg-green-900/20';
   };
 
   const formatTimeAgo = (date: Date) => {
@@ -84,7 +84,7 @@ export function InterestRateDisplay({
             key={rate.asset}
             className={cn(
               'cursor-pointer transition-all hover:shadow-md',
-              selectedAsset === rate.asset ? 'ring-2 ring-blue-500' : 'hover:bg-gray-50',
+              selectedAsset === rate.asset ? 'ring-2 ring-blue-500 dark:ring-blue-400' : 'hover:bg-gray-50 dark:hover:bg-gray-800',
               onAssetSelect ? 'cursor-pointer' : 'cursor-default'
             )}
             onClick={() => onAssetSelect?.(rate.asset)}
@@ -95,11 +95,11 @@ export function InterestRateDisplay({
                 <div className="space-y-1">
                   <div className="text-sm">
                     <span className="text-muted-foreground">Lend:</span>
-                    <span className="ml-1 font-medium text-green-600">{rate.lendingAPY}%</span>
+                    <span className="ml-1 font-medium text-green-600 dark:text-green-400">{rate.lendingAPY}%</span>
                   </div>
                   <div className="text-sm">
                     <span className="text-muted-foreground">Borrow:</span>
-                    <span className="ml-1 font-medium text-red-600">{rate.borrowingAPR}%</span>
+                    <span className="ml-1 font-medium text-red-600 dark:text-red-400">{rate.borrowingAPR}%</span>
                   </div>
                 </div>
                 <div className="text-xs text-muted-foreground">

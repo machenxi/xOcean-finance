@@ -38,13 +38,13 @@ export function LendingPositionCard({
   const [isExtending, setIsExtending] = useState(false);
   const { toast } = useToast();
 
-  const getStatusColor = (status: LendingPosition['status']) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'text-green-600 bg-green-100';
-      case 'completed': return 'text-blue-600 bg-blue-100';
-      case 'withdrawn': return 'text-gray-600 bg-gray-100';
-      case 'defaulted': return 'text-red-600 bg-red-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case 'active': return 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/20';
+      case 'completed': return 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/20';
+      case 'withdrawn': return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800';
+      case 'defaulted': return 'text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/20';
+      default: return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800';
     }
   };
 
@@ -175,7 +175,7 @@ export function LendingPositionCard({
           </div>
           <div>
             <div className="text-sm text-muted-foreground">Current Value</div>
-            <div className="text-lg font-semibold text-green-600">
+            <div className="text-lg font-semibold text-green-600 dark:text-green-400">
               {position.totalReturn} {position.asset}
             </div>
           </div>
@@ -189,7 +189,7 @@ export function LendingPositionCard({
           </div>
           <div>
             <div className="text-sm text-muted-foreground">Accrued Interest</div>
-            <div className="font-medium text-green-600">
+            <div className="font-medium text-green-600 dark:text-green-400">
               +{position.accruedInterest} {position.asset}
             </div>
           </div>
@@ -204,11 +204,11 @@ export function LendingPositionCard({
             </span>
           </div>
           
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
             <div
               className={cn(
                 'h-2 rounded-full transition-all',
-                progress >= 100 ? 'bg-green-500' : 'bg-blue-500'
+                progress >= 100 ? 'bg-green-500 dark:bg-green-400' : 'bg-blue-500 dark:bg-blue-400'
               )}
               style={{ width: `${progress}%` }}
             />

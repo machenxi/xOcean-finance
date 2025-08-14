@@ -229,7 +229,7 @@ export function Dashboard({ className }: DashboardProps) {
         <Card>
           <CardContent className="p-4">
             <div className="text-sm text-muted-foreground mb-1">Average APY</div>
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">
               {isLoadingStats ? (
                 <LoadingSpinner size="sm" />
               ) : (
@@ -259,7 +259,7 @@ export function Dashboard({ className }: DashboardProps) {
           <Card>
             <CardContent className="p-4">
               <div className="text-sm text-muted-foreground mb-1">Total Lent</div>
-              <div className="text-xl font-bold text-blue-600">
+              <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
                 ${portfolioStats.totalLent.toFixed(2)}
               </div>
             </CardContent>
@@ -277,7 +277,7 @@ export function Dashboard({ className }: DashboardProps) {
           <Card>
             <CardContent className="p-4">
               <div className="text-sm text-muted-foreground mb-1">Total Earned</div>
-              <div className="text-xl font-bold text-green-600">
+              <div className="text-xl font-bold text-green-600 dark:text-green-400">
                 ${portfolioStats.totalEarned.toFixed(2)}
               </div>
             </CardContent>
@@ -288,7 +288,7 @@ export function Dashboard({ className }: DashboardProps) {
               <div className="text-sm text-muted-foreground mb-1">Net Position</div>
               <div className={cn(
                 'text-xl font-bold',
-                portfolioStats.netPosition >= 0 ? 'text-green-600' : 'text-red-600'
+                portfolioStats.netPosition >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
               )}>
                 ${portfolioStats.netPosition.toFixed(2)}
               </div>
@@ -401,7 +401,7 @@ export function Dashboard({ className }: DashboardProps) {
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg w-fit">
+      <div className="flex space-x-1 mb-6 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg w-fit">
         <Button
           variant={activeTab === 'overview' ? 'default' : 'ghost'}
           size="sm"

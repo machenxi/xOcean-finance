@@ -23,14 +23,25 @@ export function ProfileHeader({
   onExport,
   isLoading = false,
 }: ProfileHeaderProps) {
+  const getVerificationBadgeVariant = (status: string) => {
+    switch (status) {
+      case 'verified':
+        return 'default'; // Use primary variant for verified
+      case 'pending':
+        return 'secondary'; // Use secondary variant for pending
+      default:
+        return 'outline'; // Use outline variant for unverified
+    }
+  };
+
   const getVerificationBadgeColor = (status: string) => {
     switch (status) {
       case 'verified':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800';
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
     }
   };
 
@@ -115,8 +126,8 @@ export function ProfileHeader({
               <span className="text-muted-foreground">Account Health</span>
               <span className={cn(
                 'font-medium',
-                profile.accountHealthScore >= 80 ? 'text-green-600' :
-                profile.accountHealthScore >= 60 ? 'text-yellow-600' : 'text-red-600'
+                profile.accountHealthScore >= 80 ? 'text-green-600 dark:text-green-400' :
+                profile.accountHealthScore >= 60 ? 'text-yellow-600 dark:text-yellow-400' : 'text-red-600 dark:text-red-400'
               )}>
                 {profile.accountHealthScore}/100
               </span>
@@ -127,9 +138,9 @@ export function ProfileHeader({
               <Badge 
                 variant="outline" 
                 className={cn(
-                  profile.accountHealthScore >= 80 ? 'border-green-200 text-green-700' :
-                  profile.accountHealthScore >= 60 ? 'border-yellow-200 text-yellow-700' : 
-                  'border-red-200 text-red-700'
+                  profile.accountHealthScore >= 80 ? 'border-green-200 text-green-700 dark:border-green-800 dark:text-green-400' :
+                  profile.accountHealthScore >= 60 ? 'border-yellow-200 text-yellow-700 dark:border-yellow-800 dark:text-yellow-400' : 
+                  'border-red-200 text-red-700 dark:border-red-800 dark:text-red-400'
                 )}
               >
                 {profile.accountHealthScore >= 80 ? 'LOW' :

@@ -166,7 +166,7 @@ export function AssetSelector({
                       </div>
                     )}
                     {showAPY && asset.apy && (
-                      <div className="text-xs text-green-600">
+                      <div className="text-xs text-green-600 dark:text-green-400">
                         {asset.apy}% {getAPYLabel().split(' ')[1]}
                       </div>
                     )}
@@ -227,17 +227,17 @@ export function AssetSelector({
           {amount && selectedAsset && (
             <div className="text-xs space-y-1">
               {parseFloat(amount) < parseFloat(selectedAsset.minAmount || '0') && (
-                <div className="text-red-600">
+                <div className="text-red-600 dark:text-red-400">
                   Minimum amount: {selectedAsset.minAmount} {selectedAsset.code}
                 </div>
               )}
               {selectedAsset.maxAmount && parseFloat(amount) > parseFloat(selectedAsset.maxAmount) && (
-                <div className="text-red-600">
+                <div className="text-red-600 dark:text-red-400">
                   Maximum amount: {selectedAsset.maxAmount} {selectedAsset.code}
                 </div>
               )}
               {showBalance && selectedAsset.balance && parseFloat(amount) > parseFloat(selectedAsset.balance.replace(/,/g, '')) && (
-                <div className="text-red-600">
+                <div className="text-red-600 dark:text-red-400">
                   Insufficient balance. Available: {selectedAsset.balance} {selectedAsset.code}
                 </div>
               )}
@@ -263,7 +263,7 @@ export function AssetSelector({
               {showAPY && selectedAsset.apy && (
                 <div className="flex justify-between">
                   <span>{getAPYLabel()}:</span>
-                  <span className="font-medium text-green-600">{selectedAsset.apy}%</span>
+                  <span className="font-medium text-green-600 dark:text-green-400">{selectedAsset.apy}%</span>
                 </div>
               )}
               {showBalance && selectedAsset.balance && (

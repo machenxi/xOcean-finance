@@ -1,9 +1,11 @@
 // src/App.tsx
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { WalletProvider } from '@/context/WalletProvider';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import { Toaster } from '@/components/ui/toaster';
 import ConnectWalletButton from '@/components/ConnectWalletButton';
 import NetworkBadge from '@/components/NetworkBadge';
+import ThemeToggle from '@/components/ui/theme-toggle';
 import Home from '@/pages/Home';
 import LendBorrow from '@/pages/LendBorrow';
 import ProfilePage from '@/pages/ProfilePage';
@@ -57,8 +59,9 @@ function Navigation() {
             </div>
           </div>
           
-          {/* Right side - Network Badge and Connect Wallet */}
+          {/* Right side - Theme Toggle, Network Badge and Connect Wallet */}
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <NetworkBadge />
             <ConnectWalletButton />
           </div>
@@ -146,26 +149,28 @@ function Footer() {
 
 function App() {
   return (
-    <WalletProvider>
-      <Router>
-        <div className="min-h-screen flex flex-col bg-background">
-          <Navigation />
-          
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/lending" element={<LendBorrow />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </Routes>
-          </main>
-          
-          <Footer />
-          
-          {/* Toast Notifications */}
-          <Toaster />
-        </div>
-      </Router>
-    </WalletProvider>
+    <ThemeProvider>
+      <WalletProvider>
+        <Router>
+          <div className="min-h-screen flex flex-col bg-background">
+            <Navigation />
+            
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/lending" element={<LendBorrow />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Routes>
+            </main>
+            
+            <Footer />
+            
+            {/* Toast Notifications */}
+            <Toaster />
+          </div>
+        </Router>
+      </WalletProvider>
+    </ThemeProvider>
   );
 }
 

@@ -14,11 +14,11 @@ const LoadingSpinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
       lg: 'h-8 w-8'
     };
 
-    const variantClasses = {
-      default: 'text-gray-600',
-      primary: 'text-blue-600',
-      secondary: 'text-gray-400'
-    };
+    const colorClasses = {
+    default: 'text-gray-600 dark:text-gray-400',
+    primary: 'text-blue-600 dark:text-blue-400',
+    secondary: 'text-gray-400 dark:text-gray-500'
+  };
 
     return (
       <div
@@ -30,7 +30,7 @@ const LoadingSpinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
           className={cn(
             'animate-spin',
             sizeClasses[size],
-            variantClasses[variant]
+            colorClasses[variant]
           )}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

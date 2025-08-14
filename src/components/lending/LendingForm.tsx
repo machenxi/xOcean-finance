@@ -194,7 +194,7 @@ export function LendingForm({ onSuccess }: LendingFormProps) {
           <div className="space-y-2">
             <label className="text-sm font-medium">Interest Rate (APY)</label>
             <div className="p-2 bg-muted rounded-md">
-              <span className="text-lg font-semibold text-green-600">
+              <span className="text-lg font-semibold text-green-600 dark:text-green-400">
                 {formData.interestRate}%
               </span>
             </div>
@@ -211,7 +211,7 @@ export function LendingForm({ onSuccess }: LendingFormProps) {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Interest:</span>
-                  <span className="text-green-600">
+                  <span className="text-green-600 dark:text-green-400">
                     +{(calculateExpectedReturn() - parseFloat(formData.amount)).toFixed(6)} {formData.currency}
                   </span>
                 </div>
